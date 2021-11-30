@@ -4,7 +4,7 @@ on:
     workflows:
       - Build
     branches:
-      - sablepankaj190-patch-1
+      - main
     types:
       - completed
 
@@ -17,3 +17,16 @@ jobs:
       - uses: ./action-a
         with:
           MY_NAME: "Mona"
+        
+  download-artifact:
+    name: download artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download math result for job 1
+        uses: actions/download-artifact@v2
+        with:
+          name: homework
+      - shell: bash
+        run: |
+          value=`cat math-homework.txt`
+          echo The result is $value
