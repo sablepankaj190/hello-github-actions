@@ -12,22 +12,10 @@ jobs:
   build:
     name: Hello world action
     runs-on: ubuntu-latest
-    if: ${{ contains(github.ref, 'main') }}
+    if: ${{ contains(github.ref, 'test') }}
     steps:
       - uses: actions/checkout@v1
       - uses: ./action-a
         with:
           MY_NAME: "Mona"
-        
-  download-artifact:
-    name: download artifact
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download math result for job 1
-        uses: actions/download-artifact@v2
-        with:
-          name: homework
-      - shell: bash
-        run: |
-          value=`cat math-homework.txt`
-          echo The result is $value
+ 
