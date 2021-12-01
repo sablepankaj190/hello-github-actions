@@ -23,7 +23,7 @@ jobs:
         run: |
          echo ${{github.event}}
          echo hello
-         echo ${{github.event.workflow_run}}
+         echo $github.event
          echo ${{github.event.workflow_run.conslusion}}
-         echo github.event.workflow_run.conslusion
-         echo github.event.workflow_run.id
+         echo $github.event.workflow_run.conslusion
+         echo $github.event.workflow_run.id
