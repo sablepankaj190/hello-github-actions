@@ -22,12 +22,12 @@ jobs:
       - name: Set env
         if: |
           github.event.inputs.environment == ''
-        run: echo "{ENVIRONMENT}={dev}" >> $GITHUB_ENV
+        run: echo "ENVIRONMENT=dev" >> $GITHUB_ENV
         
       - name: Set env
         if: |
           github.event.inputs.environment == 'test'
-        run: echo "{ENVIRONMENT}={test}" >> $GITHUB_ENV  
+        run: echo "ENVIRONMENT=test" >> $GITHUB_ENV  
         
       - if: ${{ env.ENVIRONMENT == 'dev'}}
         shell: bash
