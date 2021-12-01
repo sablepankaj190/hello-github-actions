@@ -21,9 +21,17 @@ jobs:
       - name: display data
         shell: bash
         run: |
+         value = github.event
+         value1 = github.event.workflow_run
          echo ${{github.event}}
          echo hello
          echo $github.event
          echo ${{github.event.workflow_run.conslusion}}
          echo $github.event.workflow_run.conslusion
          echo $github.event.workflow_run.id
+         echo "::set-output name=value::$value"
+         echo $value
+         echo "::set-output name=value1::$value1"
+         echo $value1
+         echo "::set-output name=coverage::$value"
+         echo $value
