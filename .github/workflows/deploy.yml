@@ -7,6 +7,7 @@ on:
         description: Select the environment
         options:
         - dev
+        - prod
         - test
         required: false
   workflow_run:
@@ -22,11 +23,19 @@ jobs:
      runs-on: ubuntu-latest
      if: ${{ contains(github.ref, 'main') }}
      steps:
-      - name: set environment
-        shell: bash
-        run: |
-          echo ${{ github.event.inputs.environment == ''  }}
-          echo "choice is ${{ github.event.inputs.environment }}"
+      - uses: actions/checkout@v2
+      - name: Set env
+        if: |
+          github.event.inputs.environment == ''
+        run: echo "{ENVIRONMENT}={dev}" >> $GITHUB_ENV
+        
+      - name: Set env
+        if: |
+          github.event.inputs.environment == 'test'
+        run: echo "{ENVIRONMENT}={test}" >> $GITHUB_ENV  
+        
+      - name: Test
+        run: echo ${{ env.ENVIRONMENT }}
         
       - uses: actions/checkout@v1
       - uses: ./action-a
