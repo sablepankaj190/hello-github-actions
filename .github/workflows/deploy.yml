@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
    inputs: 
      environment:
-        type: environment
+        type: choice
         description: Select the environment
         options:
         - dev
@@ -35,7 +35,10 @@ jobs:
         run: echo "{ENVIRONMENT}={test}" >> $GITHUB_ENV  
         
       - name: Test
-        run: echo ${{ env.ENVIRONMENT }}
+        shell: bash
+        run: |
+          echo ${{ env.ENVIRONMENT }}
+          echo $ENVIRONMENT
         
       - uses: actions/checkout@v1
       - uses: ./action-a
