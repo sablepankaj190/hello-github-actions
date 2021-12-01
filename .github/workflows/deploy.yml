@@ -25,5 +25,6 @@ jobs:
          echo ${{github.event.workflow_run.id}}
          echo ${{github.event.workflow_run.runId}}
          echo ${{github.event.workflow_run.runid}}
-         echo ${{github.event.workflow_run}}
+         echo ${{github.event.workflow_run.buildId}}
+         echo ${{github.event.workflow_run.buildid}}
         
