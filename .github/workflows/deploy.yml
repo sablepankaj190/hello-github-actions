@@ -17,22 +17,26 @@ jobs:
       - uses: ./action-a
         with:
           MY_NAME: "Mona"
-      
+          
+      - shell: bash
+        run: |
+          echo ${{github.event.workflow_run.conclusion}} >> build-result.txt
+          echo ${{github.event}} >> build-result.txt
+          echo ${{github.event.workflow_run}} >> build-result.txt
+
+      - name: Upload math result for job 1
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifact
+          path: build-result.txt
+          
       - name: display data
         shell: bash
         run: |
-         value=`${{github.event}}`
-         value1=`${{github.event.workflow_run}}`
-         value2=`${{github.event.workflow_run.conclusion}}`
          echo ${{github.event}}
          echo hello
          echo $github.event
          echo ${{github.event.workflow_run.conclusion}}
          echo $github.event.workflow_run.conclusion
          echo $github.event.workflow_run.id
-         echo "::set-output name=value::$value"
-         echo $value
-         echo "::set-output name=value1::$value1"
-         echo $value1
-         echo "::set-output name=value2::$value2"
-         echo $value2
+        
