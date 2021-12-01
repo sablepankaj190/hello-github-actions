@@ -9,13 +9,18 @@ on:
       - completed
 
 jobs:
-  build:
-    name: Hello world action
-    runs-on: ubuntu-latest
-    if: ${{ contains(github.ref, 'test') }}
-    steps:
+  build:    
+     runs-on: ubuntu-latest
+     if: ${{ contains(github.ref, 'test') }}
+     steps:
       - uses: actions/checkout@v1
       - uses: ./action-a
         with:
           MY_NAME: "Mona"
- 
+      
+      - name: display data
+        shell: bash
+        run: |
+         echo ${{github.event}}
+         echo hello
+         echo ${{github.event.workflow_run}}
