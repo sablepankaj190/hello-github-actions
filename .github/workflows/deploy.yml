@@ -21,9 +21,9 @@ jobs:
       - name: display data
         shell: bash
         run: |
-         value=`github.event`
-         value1=`github.event.workflow_run`
-         value2=`github.event.workflow_run.conclusion`
+         value=`${{github.event}}`
+         value1=`${{github.event.workflow_run}}`
+         value2=`${{github.event.workflow_run.conclusion}}`
          echo ${{github.event}}
          echo hello
          echo $github.event
