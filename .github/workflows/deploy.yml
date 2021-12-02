@@ -23,13 +23,12 @@ jobs:
         if: |
           github.event.inputs.environment == ''
         run: |
-          echo ${{github.workflow_run.ref}} 
-          echo ${{github.head_ref}} 
-          echo ${{github.workflow.ref_name}}
-          echo ${{github.ref}} 
+          echo ${{github.event.workflow_run.run_number}} 
+          echo ${{github.event.workflow_run}} 
+          echo ${{github.event.workflow.ref_name}}
+          echo ${{github.base_ref}} 
           echo ${{github.ref_name}}
-          echo ${{github.workflow.head_ref}}  
-
+          echo ${{github.event.workflow.head_ref}}  
           echo "RUN_NUMBER=${{github.event.workflow_run.run_number}}" >> $GITHUB_ENV
           echo {{ env.RUN_NUMBER }}
           export runNumber="${{ github.event.workflow_run.run_number }}"
