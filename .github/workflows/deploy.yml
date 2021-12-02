@@ -23,10 +23,12 @@ jobs:
         if: |
           github.event.inputs.environment == ''
         run: | 
-          export runNumber = "${{ github.event.workflow_run.run_number }}"
-          echo "ENVIRONMENT=dev" >> $GITHUB_ENV
-          echo "RUN_NUMBER=${runNumber}" >> $GITHUB_ENV
+          echo "RUN_NUMBER=${{github.event.workflow_run.run_number}}" >> $GITHUB_ENV
           echo {{ env.RUN_NUMBER }}
+          export runNumber="${{ github.event.workflow_run.run_number }}"
+          echo "ENVIRONMENT=dev" >> $GITHUB_ENV
+          echo "RUN_NUMBER1=${runNumber}" >> $GITHUB_ENV
+          echo {{ env.RUN_NUMBER1 }}
         
       - name: Set env
         if: |
