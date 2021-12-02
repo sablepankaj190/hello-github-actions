@@ -31,8 +31,9 @@ jobs:
         run: echo "ENVIRONMENT=test" >> $GITHUB_ENV  
         
       - name: set Env
-        shell: bash
-        run: echo "::set-output name=environment::${env.ENVIRONMENT}"
+        run: |
+          export ENVIRONMENT="${{ env.ENVIRONMENT }}"          
+          echo "::set-output name=environment::${ENVIRONMENT}"
         
   deploy:
      runs-on: ubuntu-latest
