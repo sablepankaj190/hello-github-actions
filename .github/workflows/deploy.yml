@@ -18,6 +18,7 @@ jobs:
      runs-on: ubuntu-latest
      if: ${{ contains(github.ref, 'main') }}
      steps:
+      - id: setEnv
       - uses: actions/checkout@v2
       - name: Set env
         if: |
@@ -29,14 +30,18 @@ jobs:
           github.event.inputs.environment == 'test'
         run: echo "ENVIRONMENT=test" >> $GITHUB_ENV  
         
+      - name: set Env
+        shell: bash
+        run: echo "::set-output name=environment::${env.ENVIRONMENT}"
+        
   deploy:
      runs-on: ubuntu-latest
      steps:
-      - if: ${{ env.ENVIRONMENT == 'dev'}}
+      - if: ${{ steps.build.outputs.environment == ''}}
         shell: bash
         run: echo "Development"
        
-      - if: ${{ env.ENVIRONMENT == 'test'}}
+      - if: ${{ steps.build.outputs.environment == 'test'}}
         shell: bash
         run: echo "Release"
         
