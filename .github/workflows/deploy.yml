@@ -24,7 +24,7 @@ jobs:
           github.event.inputs.environment == ''
         run: |
           echo ${{github.event.workflow_run.run_number}} 
-          echo ${{github.head_ref}} 
+          echo ${{github.event.workflow_run}} 
           echo ${{github.event.workflow.ref_name}}
           echo ${{github.ref}} 
           echo ${{github.ref_name}}
