@@ -29,13 +29,16 @@ jobs:
           github.event.inputs.environment == 'test'
         run: echo "ENVIRONMENT=test" >> $GITHUB_ENV  
         
+  deploy:
+     runs-on: ubuntu-latest
+     steps:
       - if: ${{ env.ENVIRONMENT == 'dev'}}
         shell: bash
         run: echo "Development"
        
       - if: ${{ env.ENVIRONMENT == 'test'}}
         shell: bash
-        run: echo "Release" 
+        run: echo "Release"
         
       - uses: actions/checkout@v1
       - uses: ./action-a
