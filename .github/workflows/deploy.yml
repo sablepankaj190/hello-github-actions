@@ -42,11 +42,13 @@ jobs:
         with:
           MY_NAME: "Pankaj"
           
-      - if: ${{ steps.build.outputs.environment == ''}}
+      - name: dev
+        if: ${{ steps.build.outputs.environment == ''}}
         shell: bash
         run: echo "Development"
        
-      - if: ${{ steps.build.outputs.environment == 'test'}}
+      - name: test
+        if: ${{ steps.build.outputs.environment == 'test'}}
         shell: bash
         run: echo "Release"
         
