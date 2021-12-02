@@ -34,18 +34,20 @@ jobs:
         run: |
           export ENVIRONMENT="${{ env.ENVIRONMENT }}"          
           echo "::set-output name=environment::${ENVIRONMENT}"
-        
+     outputs:
+      ENVIRONMENT: ${{ steps.setEnv.outputs.ENVIRONMENT }}
   deploy:
      runs-on: ubuntu-latest
+     needs: build
      steps:
       - uses: actions/checkout@v1          
       - name: dev
-        if: ${{ steps.build.outputs.environment == ''}}
+        if: ${{ needs.build.outputs.ENVIRONMENT == ''}}
         shell: bash
         run: echo "Development"
        
       - name: test
-        if: ${{ steps.build.outputs.environment == 'test'}}
+        if: ${{ needs.build.outputs.ENVIRONMENT == 'test'}}
         shell: bash
         run: echo "Release"
         
