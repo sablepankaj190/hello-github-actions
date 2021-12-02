@@ -37,11 +37,7 @@ jobs:
   deploy:
      runs-on: ubuntu-latest
      steps:
-      - uses: actions/checkout@v1
-      - uses: ./action-a
-        with:
-          MY_NAME: "Pankaj"
-          
+      - uses: actions/checkout@v1          
       - name: dev
         if: ${{ steps.build.outputs.environment == ''}}
         shell: bash
