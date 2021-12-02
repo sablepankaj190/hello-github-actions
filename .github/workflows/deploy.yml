@@ -23,7 +23,7 @@ jobs:
         if: |
           github.event.inputs.environment == ''
         run: |
-          echo ${{github.head_ref}} 
+          echo ${{github.event.workflow_run.ref}} 
           echo hi
           echo "RUN_NUMBER=${{github.event.workflow_run.run_number}}" >> $GITHUB_ENV
           echo {{ env.RUN_NUMBER }}
