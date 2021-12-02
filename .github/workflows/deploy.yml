@@ -24,7 +24,7 @@ jobs:
           github.event.inputs.environment == ''
         run: |
           echo ${{github.event.workflow_run.ref}} 
-          echo hi
+          echo ${{github.head_ref}} 
           echo "RUN_NUMBER=${{github.event.workflow_run.run_number}}" >> $GITHUB_ENV
           echo {{ env.RUN_NUMBER }}
           export runNumber="${{ github.event.workflow_run.run_number }}"
