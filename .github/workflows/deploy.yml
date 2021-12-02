@@ -27,7 +27,7 @@ jobs:
           echo $GITHUB_HEAD_REF!
           echo $GITHUB_BASE_REF!
           
-          echo ${{github.event.workflow_run}} 
+          echo ${{github.event.workflow_run.head_branch}} 
           echo ${{github.event.workflow.ref_name}}
           echo ${{github.base_ref}} 
           echo ${{github.head_ref}}
