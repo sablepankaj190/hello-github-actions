@@ -17,13 +17,14 @@ on:
 jobs:
   build:    
      runs-on: ubuntu-latest
-     if: ${{ endsWith(github.ref, 'release-1.0') }}
+     
      steps:
       - uses: actions/checkout@v2
       - name: Set env
         if: |
           github.event.inputs.environment == ''
-        run: | 
+        run: |
+          echo ${{github.ref}} 
           echo "RUN_NUMBER=${{github.event.workflow_run.run_number}}" >> $GITHUB_ENV
           echo {{ env.RUN_NUMBER }}
           export runNumber="${{ github.event.workflow_run.run_number }}"
