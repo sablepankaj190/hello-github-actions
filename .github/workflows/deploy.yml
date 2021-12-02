@@ -17,7 +17,7 @@ on:
 jobs:
   build:    
      runs-on: ubuntu-latest
-     if: ${{ contains(github.ref, 'release-1.0') }}
+     if: ${{ contains(github.ref, 'release**') }}
      steps:
       - uses: actions/checkout@v2
       - name: Set env
