@@ -18,8 +18,8 @@ jobs:
      runs-on: ubuntu-latest
      if: ${{ contains(github.ref, 'main') }}
      steps:
-      - id: setEnv
       - uses: actions/checkout@v2
+        id: setEnv
       - name: Set env
         if: |
           github.event.inputs.environment == ''
