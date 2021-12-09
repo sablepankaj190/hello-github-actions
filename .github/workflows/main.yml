@@ -23,3 +23,10 @@ jobs:
         with:
           name: homework
           path: math-homework.txt
+          
+      - name: Comment Test Coverage
+        uses: AthleticNet/comment-test-coverage@1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: ./coverage-summary.json
+          title: Karma Test Coverage
